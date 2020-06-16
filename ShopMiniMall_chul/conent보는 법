@@ -1,0 +1,4 @@
+1. src/ config/ jdbc.properties파일의 
+db주소와 sid username, passwd수정
+2. src/ config/ MainController
+/main에서 시작됨 
