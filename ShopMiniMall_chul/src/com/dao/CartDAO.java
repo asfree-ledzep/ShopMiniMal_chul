@@ -5,8 +5,15 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;import com.config.MySqlSessionFactory;
 import com.dto.CartDTO;
+import com.dto.OrderDTO;
 
 public class CartDAO {
+
+	public int orderDone(SqlSession session, OrderDTO orderdto) {
+		// TODO Auto-generated method stub
+		return session.insert("CartMapper.orderDone", orderdto);
+	}
+
 	
 	public int cartUpdate(SqlSession session, HashMap<String, Integer> map) {
 		// TODO Auto-generated method stub

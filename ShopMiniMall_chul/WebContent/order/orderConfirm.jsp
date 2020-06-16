@@ -9,7 +9,8 @@
 			alert("주문시작");
 			if(this.checked){
 				$("#orderName").val($("#mname").val());
-				$("#sample4_postcode").val($("#post").val());
+				console.log("mpost", $("#mpost").val());
+				$("#sample4_postcode").val($("#mpost").val());
 				$("#sample4_roadAddress").val($("#maddress1").val());
 				$("#sample4_jibunAddress").val($("#maddress2").val());
 				$("#phone").val($("#mphone").val());			
@@ -50,8 +51,17 @@
 %>
 
 
-
-<form name="myForm" method="POST" action="">
+<!-- 주문관련 수정 -->
+<form name="myForm" method="POST" action="CartOrderDoneServlet">
+<!-- hidden데이터  -->
+	<input type="hidden" name="gCode" value="<%=gCode %>">
+	<input type="hidden" name="gName" value="<%=gName %>">
+	<input type="hidden" name="gPrice" value="<%=gPrice %>">
+	<input type="hidden" name="gSize" value="<%=gSize %>">
+	<input type="hidden" name="gColor" value="<%=gColor %>">
+	<input type="hidden" name="gAmount" value="<%=gAmount %>">
+	<input type="hidden" name="gImage" value="<%=gImage %>">
+	<input type="hidden" name="orderNum" value="<%=num %>">
 	<table width="80%" cellspacing="0" cellpadding="0">
 
 		<tr>
@@ -284,7 +294,7 @@
 						
 						<input type="radio" name="payMethod" value="계좌이체">계좌이체</input>
 						
-						<input type="radio" name="payMethod" value="무통장 입금">무통장 입금</input>
+						<input type="radio" name="payMethod" value="무통장입금">무통장 입금</input>
 					</td>
 					
 				</tr>
@@ -302,7 +312,7 @@
 	<tr>
 		<td class="td_default" align="center">
 			<input type='button' value='취소' onclick="javascript:history.back()">	
-			<input type='button' value='결제하기' onclick="orderDone(myForm)">
+			<input type='submit' value='결제하기' >
 		</td>
 	</tr>
 

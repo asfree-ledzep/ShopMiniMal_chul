@@ -159,7 +159,7 @@ insert into goods
      gSize CHAR(1) not null,
      gColor VARCHAR2(10) not null,
      gAmount NUMBER(2) not null,
-     gImage varchar2(20) not null
+     gImage varchar2(4) not null
   );   
    
   alter table cart
@@ -190,7 +190,7 @@ insert into goods
      addr1 VARCHAR2(500) NOT NULL,
      addr2 VARCHAR2(500) NOT NULL,
      phone VARCHAR2(11) NOT NULL,
-     payMethod VARCHAR2(10) NOT NULL,
+     payMethod VARCHAR2(40) NOT NULL,
      orderDay DATE  DEFAULT SYSDATE
   );   
   alter table orderInfo
@@ -204,3 +204,6 @@ insert into goods
    
    create sequence orderInfo_seq;   
 
+   ---- 테이블 수정  paynethod 칼럼이 작음
+   alter table orderinfo 
+   modify (paymethod varchar(40));

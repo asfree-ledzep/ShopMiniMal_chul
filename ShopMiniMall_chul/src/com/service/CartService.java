@@ -8,8 +8,24 @@ import org.apache.ibatis.session.SqlSession;
 import com.config.MySqlSessionFactory;
 import com.dao.CartDAO;
 import com.dto.CartDTO;
+import com.dto.OrderDTO;
 
 public class CartService {
+
+	public int orderDone(OrderDTO orderdto) {
+		// TODO Auto-generated method stub
+		SqlSession session= null;
+		int result=0;
+		try {
+			session= MySqlSessionFactory.getSession();
+			CartDAO dao= new CartDAO();
+			 result=dao.orderDone(session, orderdto);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return result;
+	}
 
 	public int cartAdd(CartDTO dto) {
 		// TODO Auto-generated method stub
@@ -100,6 +116,7 @@ public class CartService {
 		
 		return dto;
 	}
+
 
 	
 
