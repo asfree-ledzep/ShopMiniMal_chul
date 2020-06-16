@@ -52,7 +52,7 @@ public class CartOrderDoneServlet extends HttpServlet {
 			String addr2= request.getParameter("addr2");
 			String phone= request.getParameter("phone");
 			String payMethod= request.getParameter("payMethod");
-			//String orderNum= request.getParameter("orderNum");
+			String orderNum= request.getParameter("orderNum"); //삭제를 위한 ordernum
 			
 			//OrderDTO생성
 			OrderDTO orderdto= new OrderDTO(0, userid, gCode, gName, gPrice, gSize, gColor,
@@ -60,7 +60,7 @@ public class CartOrderDoneServlet extends HttpServlet {
 			//num은 0으로 orderday는 null로 설정
 			//System.out.println("CartOrderDoneServlet  orderdto========"+orderdto);
 			CartService service= new CartService();
-			int result= service.orderDone(orderdto);
+			int result= service.orderDone(orderdto, orderNum );
 			request.setAttribute("orderDTO", orderdto);
 			nextPage="orderDone.jsp";
 		}else {
