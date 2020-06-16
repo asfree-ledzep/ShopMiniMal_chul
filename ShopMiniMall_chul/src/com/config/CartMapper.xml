@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CartMapper">
+
+<select id="cartByNum" parameterType="int" resultType="CartDTO">
+	select num, userid, gcode, gname, gprice, gsize, gcolor, gamount, gimage 
+		from cart where num= #{num}
+</select>
+
+<delete id="cartAllDel" parameterType="list">
+	delete from cart
+	where num
+	in
+	<foreach collection="list" item="item" open="("  separator="," close=")">
+		#{item}
+	</foreach>
+
+
+</delete>
+<update id="cartUpdate" parameterType="hashmap">
+	update cart set gamount= #{gAmount} where num= #{num}
+</update>
+
+
+  <insert id="cartAdd" parameterType="CartDTO" >
+   		insert into cart (num, userid, gcode, gname, gprice, gsize, gcolor, gamount, gimage) values
+   		( cart_seq.nextval, #{userid}, #{gCode}, #{gName}, #{gPrice}, #{gSize} ,#{gColor}, #{gAmount}, #{gImage}) 
+   </insert>
+
+	<select id="cartList" parameterType="string" resultType="CartDTO"  >
+		select num, userid, gcode, gname, gprice, gsize, gcolor, gamount, gimage 
+		from cart where userid= #{userid}
+	</select>
+	
+	<delete id="cartDel" parameterType="int">
+		delete from cart where num= #{num}
+	</delete>
+	
+<!-- 	
+	<update id="memberUpdate" parameterType="MemberDTO" >
+		update member set
+		post= #{post},
+		addr1= #{addr1},
+		addr2= #{addr2},
+		phone1= #{phone1},
+		phone2= #{phone2},
+		phone3= #{phone3},
+		email1= #{email1},
+		email2= #{email2}
+		where userid= #{userid}	
+	</update>
+ 
+   
+   <select id="idCheck" parameterType="string" resultType="int">
+   		select count(*) from member where userid= #{userid}
+   </select>
+   
+   <select id="login" parameterType="hashmap" resultType="MemberDTO">
+   		select userid, passwd, username, post, addr1, addr2, phone1, phone2, phone3, email1,
+   		email2 from member where userid= #{userid} and passwd= #{passwd}
+   </select>
+   <select id="mypage" parameterType="string" resultType="MemberDTO">
+   		select userid, passwd, username, post, addr1, addr2, phone1, phone2, phone3, email1,
+   		email2 from member where userid= #{userid}
+   </select>
+    -->
+   
+</mapper>
