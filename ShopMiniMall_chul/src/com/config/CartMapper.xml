@@ -4,6 +4,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CartMapper">
 
+<select id="orderAllConfirm" parameterType="list" resultType="CartDTO">
+		select num, userid, gcode, gname, gprice, gsize, gcolor, gamount, gimage 
+		from cart where num IN
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+</select>
+
+
 <insert id="orderDone" parameterType="OrderDTO">
 	insert into orderinfo (NUM, USERID, GCODE, GNAME, GPRICE,
 	GSIZE, GCOLOR, GAMOUNT, GIMAGE, ORDERNAME, POST,ADDR1, ADDR2, PHONE, PAYMETHOD)

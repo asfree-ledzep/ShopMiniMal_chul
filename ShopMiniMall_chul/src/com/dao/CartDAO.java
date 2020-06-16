@@ -52,6 +52,12 @@ public class CartDAO {
 	}
 
 
+	public List<CartDTO> orderAllConfirm(SqlSession session, List<String> list) {
+		// TODO Auto-generated method stub
+		return session.selectList("CartMapper.orderAllConfirm", list);
+	}
+
+
 
 	
 

@@ -58,9 +58,22 @@ $(document).ready(function(){
 		location.href="CartDelServlet?num="+num;
 	});
 	
+	
+	//주문버튼
 	$(".ordreBtn").on("click", function(){
 		var num= $(this).attr('data-xxx');
 		location.href="CartOrderConfirmServlet?num="+num;
+	});
+	
+	//전체주문
+	$("#orderAllConfirm").on("click", function(){
+		alert("전체주문시작");
+		$(".check").each(function(idx,data){
+			this.checked=true;
+		});
+		
+		$("form").attr("action", "CartOrderAllConfirmServlet")
+		$("form").submit();
 	});
 	
 });
@@ -197,9 +210,9 @@ $(document).ready(function(){
 		<td height="30">
 	</tr>
 
-	<tr>
-		<td align="center" colspan="5"><a class="a_black"
-			href="javascript:orderAllConfirm(myForm)"> 전체 주문하기 </a>&nbsp;&nbsp;&nbsp;&nbsp; 
+	<tr><!--  버튼수정 -->
+		<td align="center" colspan="5"><a class="a_black" id="orderAllConfirm" href="#"
+			> 전체 주문하기 </a>&nbsp;&nbsp;&nbsp;&nbsp; 
 			<!-- 변경함  -->
 			<a class="a_black" href="#" id="delAllCart"> 전체 삭제하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;
 			<a class="a_black" href="main"> 계속 쇼핑하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;

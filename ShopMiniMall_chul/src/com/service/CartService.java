@@ -117,6 +117,20 @@ public class CartService {
 		return dto;
 	}
 
+	public List<CartDTO> orderAllConfirm(List<String> list) {
+		SqlSession session= null;
+		List<CartDTO> cartList= null;
+		try {
+			session= MySqlSessionFactory.getSession();
+			CartDAO dao= new CartDAO();
+			cartList= dao.orderAllConfirm(session, list);		
+		}finally {
+			session.close();
+			
+		}
+		return cartList;
+	}
+
 
 	
 
